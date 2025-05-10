@@ -7,7 +7,6 @@ import { fetchCamperById, clearCurrentCamper } from "../redux/slices/campersSlic
 import Gallery from "../components/Gallery"
 import ReviewSection from "../components/ReviewSection"
 import ReservationForm from "../components/ReservationForm"
-import { Loader, Check, X } from "lucide-react"
 import styles from '../styles/CamperDetailPage.module.css' // Import your CSS module
 
 function CamperDetailPage() {

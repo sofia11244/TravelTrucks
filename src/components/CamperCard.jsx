@@ -1,18 +1,14 @@
 import { Link } from "react-router-dom"
-import { useDispatch, useSelector } from "react-redux"
-import { Heart } from "lucide-react"
-import { toggleFavorite } from "../redux/slices/favoritesSlice"
+import {  useSelector } from "react-redux"
 import styles from '../styles/CamperCard.module.css'; 
 
 function CamperCard({ camper }) {
-  const dispatch = useDispatch()
   const favorites = useSelector((state) => state.favorites.items)
   const isFavorite = favorites.includes(camper.id)
 
   const handleToggleFavorite = (e) => {
     e.preventDefault()
     e.stopPropagation()
-    dispatch(toggleFavorite(camper.id))
   }
 
   const formatPrice = (price) => {
@@ -28,7 +24,6 @@ function CamperCard({ camper }) {
           onClick={handleToggleFavorite}
           aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
         >
-          <Heart fill={isFavorite ? "#FFD700" : "none"} color={isFavorite ? "#FFD700" : "#fff"} /> {/* Changed icon */}
         </button>
       </div>
 

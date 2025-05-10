@@ -1,14 +1,16 @@
 import { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
-import Footer from "./components/Footer"; // Make sure to import Footer
-
+import Header from "./components/Header.jsx";
+import "./App.css"; 
 const HomePage = lazy(() => import("./pages/HomePage")); 
 const CatalogPage = lazy(() => import("./pages/CatalogPage")); 
 const CamperDetailPage = lazy(() => import("./pages/CamperDetailPage"));
 
 export default function AppRoutes() {
   return (
-    <div>
+    <div className="app-container">
+      <Header />
+
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -16,7 +18,6 @@ export default function AppRoutes() {
           <Route path="/catalog/:id" element={<CamperDetailPage />} />
         </Routes>
       </Suspense>
-      <Footer /> {/* Add the footer so it appears on every page */}
     </div>
   );
 }

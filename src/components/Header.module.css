@@ -1,0 +1,40 @@
+.headerContainer{
+    display: flex;
+  justify-content: space-between; /* Sağda başka bir şey varsa, gerekebilir */
+  align-items: center;
+  position: relative;
+}
+.header{
+  padding:  28px 64px;
+    margin-right: auto
+}
+.bold{
+    color: #101828;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+.grey
+{
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #475467;
+
+}
+.buttonContainer{
+      position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1rem;
+}
+.button{
+    color: #101828;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.active {
+  color: #D84343;
+}
