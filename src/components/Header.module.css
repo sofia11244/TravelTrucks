@@ -3,7 +3,7 @@
   justify-content: space-between; /* Sağda başka bir şey varsa, gerekebilir */
   align-items: center;
   position: relative;
-  border: #101828 1px solid;
+  background-color: #F7F7F7;
 }
 .headerText{
   padding:  28px 64px;

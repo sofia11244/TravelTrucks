@@ -1,14 +1,123 @@
-.campers-grid{
+.camperCardContainer{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    gap: 20px;
-    padding-bottom: 20px;
+    margin-bottom: 20px;
 }
 
+
 .camperCard{
-    background-color: #f0f0f0;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
+    border: 1px solid #DADDE1;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    width:888px ;
+        justify-content: space-around;
+
+    
+}
+.star{
+    color: #FFC531;
+    font-size: 20px;
+    width: 16px;
+    height: 16px;
+}
+
+.camperCardImage {
+  width: 300px;
+  height: 320px;
+  overflow: hidden;
+  border-radius: 10px;
+  margin: 20px;
+    flex: 0 0 30%; /* %20 genişlik */
+}
+
+.camperCardImage img {
+  width: 350px;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 20px;
+}
+
+.camperFeatures{
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    padding: 20px;
+    flex-wrap: wrap;
+    min-width:100px ;
+}
+
+.feature{
+gap: 8px;
+border-radius: 100px;
+padding: 12px;
+mix-blend-mode: Multiply;
+text-transform: capitalize;
+background-color: #F2F4F7;
+display: flex;
+align-items: center;
+padding-left: 4%;
+    padding-right: 4%;
+font-weight: 600;
+}
+.featureIcon{
+    width: 30px;
+    height: 20px;
+}
+.camperName{
+    padding-bottom: 8px;
+
+    margin: 0;
+}
+.showMoreBtn{
+    background-color: #E44848;
+    color: #F2F4F7;
+    border-radius: 200px;
+    padding: 12px;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    margin: 24px;
+    width: 170px;
+    
+}
+
+.priceValue{
+font-weight: 650;
+font-size: 24px;
+letter-spacing: 0.5px;
+}
+.camperPriceAndFavorite{
+    display: flex;  
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    
+}
+.camperCardHeaderContent{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-right:24px ;
+    padding-top: 24px;
+}
+.camperDescription {
+  max-width: 550px;     /* veya belirli bir px değeri örn. 300px */
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rating{
+    margin-right: 16px;
+
+}
+
+.camperRating{
+    display: flex;
+    align-items: center;
 }

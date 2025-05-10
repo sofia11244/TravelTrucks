@@ -1,7 +1,18 @@
 import { useDispatch, useSelector } from "react-redux"
 import { setLocation, setType, toggleFeature, resetFilters } from "../../redux/slices/filtersSlice"
 import { fetchCampers, resetPage } from "../../redux/slices/campersSlice"
-import styles from '../../styles/FilterForm.module.css' // Import your CSS module
+import styles from '../filters/FiltersForm.module.css' // Import your CSS module
+import tv from '../../assets/tv.svg'
+import ac from '../../assets/wind.svg'
+import bathroom from '../../assets/ph_shower.svg'
+import kitchen from '../../assets/cup-hot.svg'
+import automatic from '../../assets/diagram.svg'
+
+import three from '../../assets/bi_grid-1x2.svg'
+import four from '../../assets/bi_grid.svg'
+import nine from '../../assets/bi_grid-3x3-gap.svg'
+
+import map from '../../assets/map.svg'
 
 function FilterForm() {
   const dispatch = useDispatch()
@@ -56,57 +67,75 @@ function FilterForm() {
           <h3>Location</h3>
           <input
             type="text"
-            placeholder="Search for location..."
+            placeholder="City"
             value={filters.location}
             onChange={handleLocationChange}
             className={styles.locationInput}
           />
         </div>
 
-        <div className={styles.filterSection}>
-          <h3>Vehicle Type</h3>
-          <div className={styles.typeOptions}>
-            {vehicleTypes.map((type) => (
-              <label key={type.value} className={styles.typeOption}>
-                <input
-                  type="radio"
-                  name="vehicleType"
-                  value={type.value}
-                  checked={filters.type === type.value}
-                  onChange={handleTypeChange}
-                />
-                <span>{type.label}</span>
-              </label>
-            ))}
-          </div>
-        </div>
+      <div className={styles.filterSection}>
+  <h3>Vehicle Equipments</h3>
+  <div className={styles.featureOptions}>
+    {features.map((feature) => {
+      const iconMap = {
+        AC: ac,
+        bathroom: bathroom,
+        kitchen: kitchen,
+        TV: tv,
+        radio: automatic,
+        refrigerator: three,
+        microwave: four,
+        gas: nine,
+        water: map,
+      }
 
-        <div className={styles.filterSection}>
-          <h3>Features</h3>
-          <div className={styles.featureOptions}>
-            {features.map((feature) => (
-              <label key={feature.value} className={styles.featureOption}>
-                <input
-                  type="checkbox"
-                  checked={filters.features[feature.value]}
-                  onChange={() => handleFeatureToggle(feature.value)}
-                />
-                <span>{feature.label}</span>
-              </label>
-            ))}
-          </div>
-        </div>
+      return (
+        <label key={feature.value} className={styles.featureOption}>
+          <input
+            type="checkbox"
+            checked={filters.features[feature.value]}
+            onChange={() => handleFeatureToggle(feature.value)}
+          />
+          <img src={iconMap[feature.value]} alt={`${feature.label} icon`} />
+          <span>{feature.label}</span>
+        </label>
+      )
+    })}
+  </div>
+</div>
 
-        <div className={styles.filterActions}>
-          <button type="button" className={styles.resetBtn} onClick={handleReset}>
-            Reset
-          </button>
-          <button type="submit" className={styles.applyBtn}>
-            Apply
-          </button>
-        </div>
+<div className={styles.filterSection}>
+  <h3>Vehicle Type</h3>
+  <div className={styles.typeOptions}>
+    {vehicleTypes.map((type) => (
+      <label
+        key={type.value}
+        className={`${styles.typeOptionButton} ${filters.type === type.value ? styles.active : ''}`}
+      >
+        <input
+          type="radio"
+          name="vehicleType"
+          value={type.value}
+          checked={filters.type === type.value}
+          onChange={handleTypeChange}
+        />
+        <span>{type.label}</span>
+      </label>
+    ))}
+  </div>
+</div>
+
+<div className={styles.filterActions}>
+  <button type="button" className={styles.resetBtn} onClick={handleReset}>
+    Reset
+  </button>
+  <button type="submit" className={styles.applyBtn}>
+    Apply
+  </button>
+</div>
       </form>
-    </div>
+    </div>  
   )
 }
 

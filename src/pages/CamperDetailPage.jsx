@@ -1,4 +1,4 @@
-"use client"
+
 
 import { useEffect } from "react"
 import { useParams } from "react-router-dom"
@@ -7,7 +7,8 @@ import { fetchCamperById, clearCurrentCamper } from "../redux/slices/campersSlic
 import Gallery from "../components/Gallery"
 import ReviewSection from "../components/ReviewSection"
 import ReservationForm from "../components/ReservationForm"
-import styles from '../styles/CamperDetailPage.module.css' // Import your CSS module
+import styles from '../styles/CamperDetailPage.module.css' 
+import { ClipLoader } from 'react-spinners';
 
 function CamperDetailPage() {
   const { id } = useParams()
@@ -27,7 +28,7 @@ function CamperDetailPage() {
       <div className={styles.detailPage}>
         <div className={styles.container}>
           <div className={styles.loadingContainer}>
-            <Loader className={styles.loadingIcon} />
+            <ClipLoader className={styles.loadingIcon} />
             <p>Loading camper details...</p>
           </div>
         </div>
@@ -67,17 +68,7 @@ function CamperDetailPage() {
   const renderFeatureItem = (label, value) => (
     <div className={styles.featureItem}>
       <span className={styles.featureLabel}>{label}</span>
-      <span className={styles.featureValue}>
-        {typeof value === "boolean" ? (
-          value ? (
-            <Check className={`${styles.featureIcon} ${styles.available}`} />
-          ) : (
-            <X className={`${styles.featureIcon} ${styles.unavailable}`} />
-          )
-        ) : (
-          value
-        )}
-      </span>
+      <span className={styles.featureValue}>{value}</span>
     </div>
   )
 

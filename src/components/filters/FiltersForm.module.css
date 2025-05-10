@@ -1,0 +1,60 @@
+.typeOptions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.typeOptionButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  border: 1px solid grey;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.3s;
+  background-color: white;
+}
+
+.typeOptionButton input {
+  display: none;
+}
+
+.typeOptionButton.active {
+  background-color: #f0f0f0; /* Seçili buton rengi */
+  border-color: #000;
+}
+
+.featureOptions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.featureOption {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 12px;
+  border: 1px solid grey;
+  border-radius: 30px;
+  padding: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+  width: 112px;
+  height: 96px;
+}
+
+.featureOption input {
+  display: none;
+}
+
+.featureOption img {
+  width: 32px;
+  height: 32px;
+}
+
+.featureOption img {
+  width: 20px;
+  height: 20px;
+}
