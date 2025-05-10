@@ -1,6 +1,6 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './Header.module.css'; 
-
+import logo from '../assets/logo.png'; // Adjust the path as necessary
 
 export default function Header() {
   const navigate = useNavigate();
@@ -8,11 +8,8 @@ export default function Header() {
 
   return (
     <div className={styles.headerContainer}>
-      <div className={styles.header}>
-        <p className={styles.headerText}>
-          <span className={styles.bold}>Travel</span>
-          <span className={styles.grey}>Trucks</span>
-        </p>
+      <div className={styles.headerText}>
+        <img src={logo} alt=" logo" />
       </div>
       <div className={styles.buttonContainer}>
         <button 
