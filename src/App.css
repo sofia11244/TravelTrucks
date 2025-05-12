@@ -12,13 +12,6 @@
   --color-F7F7F7: #F7F7F7;
   --color-FFFFFF: #FFFFFF;
 }
-
-.input{
-    width: 527;
-    height: 60;
-    top: 20px;
-    left: 20px;
-    border-radius: 12px;
-    padding: 18px 337px 18px 18px;
-    gap: 10px;
+* {
+  transition: all 0.3s ease;
 }

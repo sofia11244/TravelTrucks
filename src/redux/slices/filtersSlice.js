@@ -1,13 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit"
-
 const initialState = {
   location: "",
   type: "",
+  searchApplied: false,
   features: {
     AC: false,
     bathroom: false,
     kitchen: false,
     TV: false,
+    automatic: false, 
     radio: false,
     refrigerator: false,
     microwave: false,
@@ -16,6 +17,7 @@ const initialState = {
     transmission: false,
   },
 }
+
 
 const filtersSlice = createSlice({
   name: "filters",
@@ -31,9 +33,11 @@ const filtersSlice = createSlice({
       const feature = action.payload
       state.features[feature] = !state.features[feature]
     },
-    resetFilters: () => initialState,
+    setSearchApplied: (state, action) => {
+    state.searchApplied = action.payload;
+  },
   },
 })
 
-export const { setLocation, setType, toggleFeature, resetFilters } = filtersSlice.actions
+export const { setLocation, setType, toggleFeature, setSearchApplied} = filtersSlice.actions
 export default filtersSlice.reducer

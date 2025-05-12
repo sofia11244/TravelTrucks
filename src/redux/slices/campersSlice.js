@@ -15,7 +15,9 @@ export const fetchCampers = createAsyncThunk("campers/fetchCampers", async (_, {
     if (filters.type) {
       queryParams.append("form", filters.type)
     }
-
+    if (filters.features["automatic"]) {
+      queryParams.append("transmission", "automatic")
+    }
     const response = await axios.get(`${API_URL}?${queryParams.toString()}`)
     return response.data
   } catch (error) {
