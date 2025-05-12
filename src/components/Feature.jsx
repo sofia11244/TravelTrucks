@@ -1,45 +1,54 @@
-// components/Feature.jsx
-import styles from '../styles/CamperDetailPage.module.css'
+import styles from '../styles/Feature.module.css'
 import ReservationForm from "./ReservationForm"
 
 const Feature = ({ camper }) => {
-  const renderFeatureItem = (label, value) => (
-    <div className={styles.featureItem}>
+  // span ile gösterilecek özellikler
+  const renderSpanFeature = (label, value) => (
+    <>
       <span className={styles.featureLabel}>{label}</span>
       <span className={styles.featureValue}>{value}</span>
-    </div>
+    </>
+  )
+
+  // p ile gösterilecek özellikler (Vehicle Details)
+  const renderBlockFeature = (label, value) => (
+    <p className={styles.featureBlock}>
+      <span className={styles.featureLabel}>{label}</span>:{" "}
+      <span className={styles.featureValue}>{value}</span>
+    </p>
   )
 
   return (
     <section className={styles.featuresSection}>
-      <h2 className={styles.sectionTitle}>Features</h2>
-
       <div className={styles.featuresGrid}>
+
+        {/* Left side: span features */}
         <div className={styles.featuresColumn}>
-          <h3 className={styles.featuresSubtitle}>Basic Features</h3>
           <div className={styles.featuresList}>
-            {renderFeatureItem("", camper.transmission)}
-            {renderFeatureItem("", camper.engine)}
-            {renderFeatureItem("AC", camper.AC)}
-            {renderFeatureItem("Bathroom", camper.bathroom)}
-            {renderFeatureItem("Kitchen", camper.kitchen)}
-            {renderFeatureItem("Radio", camper.radio)}
+            {renderSpanFeature("Transmission", camper.transmission)}
+            {renderSpanFeature("Engine", camper.engine)}
+            {renderSpanFeature("AC", camper.AC)}
+            {renderSpanFeature("Bathroom", camper.bathroom)}
+            {renderSpanFeature("Kitchen", camper.kitchen)}
+            {renderSpanFeature("Radio", camper.radio)}
           </div>
         </div>
 
+        {/* Right side: vehicle details in <p> blocks */}
         <div className={styles.featuresColumn}>
           <h3 className={styles.featuresSubtitle}>Vehicle Details</h3>
-          <div className={styles.featuresList}>
-            {renderFeatureItem("Body Type", camper.form)}
-            {renderFeatureItem("Length", camper.length)}
-            {renderFeatureItem("Width", camper.width)}
-            {renderFeatureItem("Height", camper.height)}
-            {renderFeatureItem("Tank Capacity", camper.tank)}
-            {renderFeatureItem("Fuel Consumption", camper.consumption)}
+          <div className={styles.featuresListAlt}>
+            {renderBlockFeature("Body Type", camper.form)}
+            {renderBlockFeature("Length", camper.length)}
+            {renderBlockFeature("Width", camper.width)}
+            {renderBlockFeature("Height", camper.height)}
+            {renderBlockFeature("Tank Capacity", camper.tank)}
+            {renderBlockFeature("Fuel Consumption", camper.consumption)}
           </div>
         </div>
-          <ReservationForm  />
 
+        {/* Reservation Form */}
+        <ReservationForm />
       </div>
     </section>
   )

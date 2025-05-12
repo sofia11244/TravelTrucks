@@ -1,12 +1,17 @@
 .gallery {
-    display: grid;
+    display: flex;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 12px;
+    gap: 48px;
+    width: 292;
+border-radius: 10px;
+
   }
   
   .galleryImage {
-    width: 100%;
-    height: auto;
+    width: 292px;
+height: 312px;
+border-radius: 10px;
+
     border-radius: 8px;
     object-fit: cover;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -15,7 +20,7 @@
   }
   
   .galleryImage:hover {
-    transform: scale(1.03);
+    transform: scale(1.1);
   }
   
   .emptyMessage {

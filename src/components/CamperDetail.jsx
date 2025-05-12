@@ -30,25 +30,27 @@ const CamperDetail = ({ camper }) => {
 
       <Gallery images={camper.gallery} />
       <div className={styles.detailMain}>
-          <section className={styles.descriptionSection}>
             <p className={styles.descriptionText}>{camper.description}</p>
-          </section>
         </div>
 
-      <div className={styles.tabButtons}>
-        <button 
-          onClick={() => setActiveTab("features")} 
-          className={activeTab === "features" ? styles.activeTab : ""}
-        >
-          Features
-        </button>
-        <button 
-          onClick={() => setActiveTab("reviews")} 
-          className={activeTab === "reviews" ? styles.activeTab : ""}
-        >
-          Reviews
-        </button>
-      </div>
+     <div className={styles.tabContainer}>
+  <div className={styles.tabButtons}>
+    <button 
+      onClick={() => setActiveTab("features")} 
+      className={`${styles.tabButton} ${activeTab === "features" ? styles.activeTab : ""}`}
+    >
+      Features
+    </button>
+    <button 
+      onClick={() => setActiveTab("reviews")} 
+      className={`${styles.tabButton} ${activeTab === "reviews" ? styles.activeTab : ""}`}
+    >
+      Reviews
+    </button>
+  </div>
+  <div className={styles.tabUnderline}></div>
+</div>
+
 
       <div className={styles.tabContent}>
         {activeTab === "features" && <Feature camper={camper} />}

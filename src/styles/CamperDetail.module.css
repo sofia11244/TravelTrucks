@@ -44,3 +44,91 @@ letter-spacing: 0%;
 .detailHeader{
     margin-bottom: 28px;
 }
+.tabContainer {
+  position: relative;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 1rem;
+  margin-top: 60px;
+}
+
+.tabButtons {
+  display: flex;
+  gap: 40px;
+  position: relative;
+}
+
+.tabButton {
+  background: none;
+  border: none;
+font-weight: 600;
+font-size: 20px;
+line-height: 24px;
+letter-spacing: 0%;
+
+  color: #333;
+  padding-bottom: 24px;
+  cursor: pointer;
+  position: relative;
+}
+
+.activeTab {
+  color: #000;
+}
+
+.activeTab::after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 3px;
+  width: 100%;
+  background-color: #e50914; /* Kırmızı alt çizgi */
+  border-radius: 2px;
+}
+.activeTab::after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 3px;
+  width: 100%;
+  background-color: #e50914;
+  border-radius: 2px;
+  transform: scaleX(1);
+  transition: transform 0.3s ease;
+  transform-origin: left;
+}
+
+.tabButton {
+  position: relative;
+  background: none;
+  border: none;
+  font-weight: 600;
+  color: #333;
+  cursor: pointer;
+}
+
+.tabButton::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 3px;
+  width: 100%;
+  background-color: #e50914;
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.activeTab::after {
+  transform: scaleX(1);
+}
+
+
+.detailMain{
+    padding-top: 30px;
+}
