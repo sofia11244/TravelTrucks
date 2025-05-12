@@ -36,7 +36,6 @@ padding-bottom: 24px;
 .filterSection{
   display: flex;
   flex-direction: column;
-  gap: 24px;
   margin-bottom: 32px;
 }
 .typeOptionButton {
