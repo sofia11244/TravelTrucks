@@ -1,5 +1,5 @@
 import styles from './ReviewSection.module.css'
-
+import ReservationForm from "./ReservationForm"
 function ReviewSection({ reviews }) {
   if (!reviews || reviews.length === 0) {
     return <p className={styles.noReviews}>No reviews yet.</p>
@@ -19,6 +19,8 @@ function ReviewSection({ reviews }) {
           </li>
         ))}
       </ul>
+          <ReservationForm  />
+
     </section>
   )
 }

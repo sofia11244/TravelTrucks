@@ -9,3 +9,26 @@
     gap: 20px;
     padding: 20px;
 }
+
+.loadMoreBtn{
+        background-color: #E44848;
+    color: #F2F4F7;
+    border-radius: 200px;
+    padding: 16px;
+    display: flex
+;
+    justify-content: center;
+    text-decoration: none;
+    margin: 24px;
+    width: 170px;
+    cursor: pointer;
+    border: none;
+}
+
+/* CatalogPage.module.css */
+.filterContainer {
+  position: sticky;
+  top: 20px; /* sayfanın üstünden ne kadar aşağıda sabitleneceğini belirtir */
+  align-self: flex-start; /* eğer grid veya flex içindeyse yukarı hizalar */
+  z-index: 10; /* gerektiğinde üste çıkması için */
+}

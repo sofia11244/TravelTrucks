@@ -36,3 +36,11 @@ text-align: center;
 .active {
   color: #D84343;
 }
+
+.headerContainer{
+  /* CatalogPage.module.css */
+  position: sticky;
+  top: 0; /* sayfanın üstünden ne kadar aşağıda sabitleneceğini belirtir */
+  align-self: flex-start; /* eğer grid veya flex içindeyse yukarı hizalar */
+  z-index: 10; /* gerektiğinde üste çıkması için */
+}

@@ -54,10 +54,7 @@ padding-bottom: 24px;
   display: none;
 }
 
-.typeOptionButton.active {
-  background-color: #f0f0f0; /* Seçili buton rengi */
-  border-color: #000;
-}
+
 
 .featureOptions {
   display: flex;
@@ -97,6 +94,29 @@ padding-bottom: 24px;
   transform: scale(1.1);
 }
 
+
+/* -------------------- */
+/* -------------------- */
+.typeOptionButton {
+  transition: border 0.3s ease;
+}
+
+.typeOptionButton:checked {
+  border: #E44848 solid 1px;
+}
+
+.typeOptionButton:focus {
+  border: #E44848 solid 1px;
+}
+
+.typeOptionButton.active {
+  border: #E44848 solid 1px;
+
+}
+
+.typeOptionButton.active .featureIcon {
+  transform: scale(1.1);
+}
 
 /* -------------------- */
 .featureOptionContent{

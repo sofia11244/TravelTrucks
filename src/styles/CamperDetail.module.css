@@ -1,0 +1,46 @@
+.camperDetailContainer{
+    display: flex;
+    flex-direction: column;
+}
+.star{
+    color:#FFC531;
+}
+.rating{
+    color: #101828;
+}
+.camperName{
+font-weight: 600;
+font-size: 24px;
+line-height: 32px;
+margin: 0;
+}
+
+.camperRating{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap:16px;
+    margin:0;
+}
+
+.mapIcon{
+    width: 16px;
+    height: 16px;
+}
+.camperLocation{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+}
+
+.priceValue{
+font-weight: 600;
+font-size: 24px;
+line-height: 32px;
+letter-spacing: 0%;
+}
+
+.detailHeader{
+    margin-bottom: 28px;
+}
