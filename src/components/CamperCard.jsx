@@ -1,7 +1,8 @@
-import { Link } from "react-router-dom"
-import { useSelector } from "react-redux"
-import styles from '../styles/CamperCard.module.css'; 
-import automaticTransmission from '../assets/diagram.svg';
+import styles from '../styles/Feature.module.css';
+import ReservationForm from "./ReservationForm";
+
+// İkonlar
+import automatic from '../assets/diagram.svg';
 import ac from '../assets/wind.svg';
 import bathroom from '../assets/ph_shower.svg';
 import kitchen from '../assets/cup-hot.svg';
@@ -9,115 +10,84 @@ import tv from '../assets/tv.svg';
 import radio from '../assets/ui-radios.svg';
 import refrigerator from '../assets/fridge.svg';
 import microwave from '../assets/microwave.svg';
-import gas from '../assets/gas.svg';
+import petrol from '../assets/gas.svg';
 import water from '../assets/water.svg';
-import heart from '../assets/heart.svg';
-import activeHeart from '../assets/active-heart.svg';
-import { useDispatch } from 'react-redux';
-import { toggleFavorite } from '../redux/slices/favoritesSlice'; 
-import map  from '../assets/map.svg';
 
-function CamperCard({ camper }) {
-  const favorites = useSelector((state) => state.favorites.items)
-  const isFavorite = favorites.includes(camper.id)
-  const dispatch = useDispatch();
+const featureIcons = {
+  transmission: automatic,
+  engine: petrol,
+  AC: ac,
+  bathroom: bathroom,
+  kitchen: kitchen,
+  TV: tv,
+  radio: radio,
+  refrigerator: refrigerator,
+  microwave: microwave,
+  water: water,
+};
 
-const handleToggleFavorite = (e) => {
-  e.preventDefault();
-  e.stopPropagation();
-  dispatch(toggleFavorite(camper.id));
-}
+const Feature = ({ camper }) => {
+const renderSpanFeature = (value, icon) => (
+  <div className={styles.featureBadge}>
+    <img src={icon} alt={`${value} icon`} className={styles.featureIcon} />
+    <span className={styles.featureText}>{value}</span>
+  </div>
+);
 
-  const formatPrice = (price) => {
-    return price.toFixed(2)
-  }
 
-  // Dinamik özelliklerin listelenmesi
-  const featureIcons = {
-    'automaticTransmission': automaticTransmission,
+  const renderBlockFeature = (label, value) => (
+    <p className={styles.featureBlock} key={label}>
+      <span className={styles.featureLabel}>{label}</span>:{" "}
+      <span className={styles.featureValue}>{value}</span>
+    </p>
+  );
 
-    'AC': ac, 
-    'bathroom': bathroom, 
-    'kitchen': kitchen, 
-    'TV': tv, 
-    'radio': radio, 
-    'refrigerator': refrigerator, 
-    'microwave': microwave, 
-    'gas': gas, 
-    'water': water,
-  };
+  // Özellikler listesi
+  const spanFeatures = [
+    { key: 'transmission', label: 'Transmission' },
+    { key: 'engine', label: 'Engine' },
+    { key: 'AC', label: 'AC' },
+    { key: 'bathroom', label: 'Bathroom' },
+    { key: 'kitchen', label: 'Kitchen' },
+    { key: 'TV', label: 'TV' },
+    { key: 'radio', label: 'Radio' },
+    { key: 'refrigerator', label: 'Refrigerator' },
+    { key: 'microwave', label: 'Microwave' },
+    { key: 'water', label: 'Water Supply' },
+  ];
+
+  const blockFeatures = [
+    { label: "Body Type", value: camper.form },
+    { label: "Length", value: camper.length },
+    { label: "Width", value: camper.width },
+    { label: "Height", value: camper.height },
+    { label: "Tank Capacity", value: camper.tank },
+    { label: "Fuel Consumption", value: camper.consumption },
+  ];
 
   return (
-    <div className={styles.camperCardContainer}>
-      <div className={styles.camperCard}>
-        <div className={styles.camperCardImage}>
-          <img src={camper.gallery[0].thumb || "/placeholder.svg"} alt={camper.name} />
+    <section className={styles.featuresSection}>
+      <div className={styles.featuresGrid}>
+        <div className={styles.featuresColumn}>
+          <h3 className={styles.featuresSubtitle}>Features</h3>
+          <div className={styles.featuresList}>
+            {spanFeatures.map(({ key, label }) =>
+              camper[key] ? renderSpanFeature(label, camper[key], featureIcons[key]) : null
+            )}
+          </div>
         </div>
 
-        <div className={styles.camperCardContent}>
-          <div className={styles.camperCardHeader}>
-            <div className={styles.camperCardHeaderContent}>
-              <h3 className={styles.camperName}>{camper.name}</h3>
-
-              <div className={styles.camperPriceAndFavorite}>
-                <span className={styles.priceValue}>${formatPrice(camper.price)}</span>
-                <img
-                  src={isFavorite ? activeHeart : heart}
-                  alt="Favorite"
-                  className={styles.favoriteBtn}
-                  onClick={handleToggleFavorite}
-                  aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
-                />
-              </div>
-            </div>
-            <div className={styles.camperRating}>
-              <div className={styles.rating}>
-                <span className={styles.star}>★</span>
-              <span>{camper.rating} ({camper.reviews?.length || 0} Reviews)</span>
-              </div>
-             <div>
-               <span className={styles.camperLocation}>
-                <img src={map} alt="Location" className={styles.locationIcon} /> {camper.location}</span>
-              
-             </div>
-            </div>
-               <p className={styles.camperDescription}>{camper.description}</p>
-
-
-          </div>
-
-
-          
-          <div className={styles.camperFeatures}>
-            {Object.keys(featureIcons).map((feature) => {
-              if (feature === 'automaticTransmission' && camper.transmission === 'automatic') {
-                return (
-                  <span key={feature} className={styles.feature}>
-                    <img src={featureIcons[feature]} alt="Automatic Transmission" className={styles.featureIcon} />
-                    Automatic
-                  </span>
-                );
-              }
-              return camper[feature] ? (
-                <span key={feature} className={styles.feature}>
-                  <img src={featureIcons[feature]} alt={feature} className={styles.featureIcon} />
-                  {feature}
-                </span>
-              ) : null;
-            })}
-          </div>
-
-          <div className={styles.camperCardFooter}>
-            
-
-            <Link to={`/catalog/${camper.id}`} className={styles.showMoreBtn} target="_blank" rel="noopener noreferrer">
-              Show more
-            </Link>
+        <div className={styles.featuresColumn}>
+          <h3 className={styles.featuresSubtitle}>Vehicle Details</h3>
+          <div className={styles.featuresListAlt}>
+            {blockFeatures.map(({ label, value }) => renderBlockFeature(label, value))}
           </div>
         </div>
       </div>
-    </div>
-  )
-}
 
-export default CamperCard;
+      <ReservationForm />
+    </section>
+  );
+};
+
+export default Feature;

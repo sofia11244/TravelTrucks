@@ -1,7 +1,16 @@
+.featureReservationContainer{
+    display: flex;
+    flex-direction: row;
+}
+.reservationForm{
+    width: 50%;
+}
+
 .featuresSection{
     background-color: #F7F7F7;
     margin-top:44px;
     border-radius: 10px;
+    width: 50%;
 }.featureItem{
     display: flex;
     width: 100%;
@@ -9,16 +18,60 @@
 .featuresColumn{
 padding: 44px 52px;
 }
-.featureLabel,
+
 .featureValue{
 gap: 8px;
-border-radius: 100px;
 padding: 12px;
 text-transform: capitalize;
-background-color: #F2F4F7;
-display: flex;
-align-items: center;
 padding-left: 4%;
     padding-right: 4%;
 font-weight: 600;
+
+}
+
+.featuresList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.featureBadge {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  border-radius: 100px;
+  background-color: #F2F4F7;
+  font-weight: 600;
+  text-transform: capitalize;
+  gap: 8px;
+}
+
+.featureBlock{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+.featureValue{
+    padding: 0;
+}
+.featuresSubtitle{
+    border-bottom: #DADDE1 1px solid;
+    padding-bottom: 24px;
+font-weight: 600;
+font-size: 20px;
+line-height: 24px;
+letter-spacing: 0%;
+
+}
+
+.featureLabel{
+font-weight: 500;
+font-size: 16px;
+line-height: 24px;
+letter-spacing: 0%;
+text-align: center;
+
 }

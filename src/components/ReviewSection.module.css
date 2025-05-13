@@ -1,0 +1,68 @@
+.featureReservationContainer{
+    display: flex;
+    flex-direction: row;
+}
+.reservationForm{
+    width: 50%;
+}
+
+.featuresSection{
+    margin-top:44px;
+    border-radius: 10px;
+    width: 50%;
+}
+.star{
+    color:#FFC531;
+}
+
+.empty{
+    color: #F2F4F7;
+}
+
+.reviewList{
+    list-style: none;
+}
+
+.reviewItem{
+    margin-bottom: 44px;
+}
+
+.reviewHeader{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.reviewerIcon{
+    color: #E44848;
+font-weight: 600;
+font-size: 40px;
+line-height: 32px;
+letter-spacing: 0%;
+width: 60px;
+height: 60px;
+border-radius: 60px;
+background: #F2F4F7;
+display: flex;
+align-items: center;
+justify-content: center;
+
+}
+/* width: 631;
+height: 340;
+top: 812px;
+left: 64px;
+gap: 44px; */
+
+.reviewerInfo{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+font-weight: 500;
+font-size: 16px;
+line-height: 24px;
+letter-spacing: 0%;
+
+}

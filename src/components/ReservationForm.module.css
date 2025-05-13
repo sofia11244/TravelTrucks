@@ -1,0 +1,88 @@
+.form{
+margin: 44px;
+margin-right: 64px;
+border: 1px solid #DADDE1;
+border-radius: 10px;
+width: 96%;
+border-radius: 10px;
+border-width: 1px;
+padding: 44px;
+gap: 24px;
+
+
+}
+    /* padding: 57px 44px; */
+
+.inputContainer{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    gap: 14px;
+    
+}
+
+.formContainer{
+    display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+text-align: right;
+}
+
+.title,
+.formContainer p {
+  align-self: flex-start;
+  text-align: left;
+}
+.title{
+    margin: 0;
+}
+.title,
+.description
+{
+    padding-left: 20% 
+}
+.description{
+    margin-bottom: 24px;
+}
+.input,
+.inputComment{
+    width: 527px;
+height: 60px;
+border-radius: 12px;
+padding-top: 18px;
+padding-right: 337px;
+padding-bottom: 18px;
+padding-left: 18px;
+gap: 14px;
+
+    padding: 18px;
+    border-radius: 8px;
+    border: 1px solid #E4E7EC;
+    background-color: #F7F7F7;
+    font-size: 16px;
+    line-height: 24px;
+    color: #101828;
+    border: none;
+
+outline: none;}
+
+.inputComment{
+    height: 118px;
+    
+}
+
+.button{
+    width: 166;
+height: 56;
+border-radius: 200px;
+gap: 10px;
+padding-top: 16px;
+padding-right: 60px;
+padding-bottom: 16px;
+padding-left: 60px;
+background: #E44848;
+outline: none;
+border: none;
+color:#FFFFFF ;
+}
