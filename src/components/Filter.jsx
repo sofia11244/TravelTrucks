@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchCampers } from '../redux/slices/campersSlice';
 import FiltersForm from '../components/filters/FiltersForm';
 
-const FilterComponent = () => {
+const Filter = () => {
   const dispatch = useDispatch();
   const filters = useSelector(state => state.filters); 
 
@@ -54,4 +54,4 @@ const FilterComponent = () => {
   );
 };
 
-export default FilterComponent;
+export default Filter;
