@@ -1,6 +1,7 @@
 .catalogPage{
     display: flex;
     gap: 64px;
+    justify-content: center;
 }
 
 .campersContainer{
@@ -8,6 +9,7 @@
     flex-direction: column;
     gap: 20px;
     padding: 20px;
+    flex:2;
 }
 
 .loadMoreBtn{
@@ -33,6 +35,7 @@
   top: 20px; /* sayfanın üstünden ne kadar aşağıda sabitleneceğini belirtir */
   align-self: flex-start; /* eğer grid veya flex içindeyse yukarı hizalar */
   z-index: 10; /* gerektiğinde üste çıkması için */
+  flex: 1;
 }
 
 .loadingContainer{
