@@ -11,7 +11,7 @@ export default function AppRoutes() {
     <div className="app-container">
       <Header />
 
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div className="loading">Loading...</div>}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/catalog" element={<CatalogPage />} />
