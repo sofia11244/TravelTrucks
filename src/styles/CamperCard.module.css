@@ -84,7 +84,9 @@ font-weight: 600;
     width: 170px;
     
 }
-
+.showMoreBtn:hover{
+    background-color: #D84343;
+}
 .priceValue{
 font-weight: 650;
 font-size: 24px;
@@ -120,4 +122,10 @@ letter-spacing: 0.5px;
 .camperRating{
     display: flex;
     align-items: center;
+}
+
+.camperLocation{
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }

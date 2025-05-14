@@ -33,7 +33,7 @@ function CatalogPage() {
         <div className={styles.campersContainer}> {/* just card div */}
           {loading && items.length === 0 ? (
             <div className={styles.loadingContainer}>
-              <ClipLoader className={styles.loadingIcon} color="#007bff" size={50} />
+              <ClipLoader className={styles.loadingIcon} color="#000000" size={50} />
             </div>
           ) : items.length === 0 ? (
             <div className={styles.noResults}>
@@ -52,7 +52,9 @@ function CatalogPage() {
                   <button className={styles.loadMoreBtn} onClick={handleLoadMore} disabled={loading}>
                     {loading ? (
                       <>
-                        <ClipLoader className={styles.loadingIcon} color="#007bff" size={20} />
+                      <div className={styles.loadingContainer}>
+                        <ClipLoader className={styles.loadingIcon} color="#000000" size={50} />
+                      </div>
                       </>
                     ) : (
                       "Load More"

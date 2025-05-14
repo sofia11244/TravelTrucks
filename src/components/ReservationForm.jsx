@@ -2,17 +2,23 @@ import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import styles from "./ReservationForm.module.css";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 function ReservationForm({ camperId }) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    date: "",
+    date: null, // date formatını Date objesi olarak tutacağız
     comment: "",
   });
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleDateChange = (date) => {
+    setFormData({ ...formData, date });
   };
 
   const handleSubmit = (e) => {
@@ -24,7 +30,7 @@ function ReservationForm({ camperId }) {
     setFormData({
       name: "",
       email: "",
-      date: "",
+      date: null,
       comment: "",
     });
   };
@@ -62,16 +68,14 @@ function ReservationForm({ camperId }) {
           </label>
 
           <label className={styles.label}>
-            <input
-              type="text"
-              name="date"
-              value={formData.date}
-              onChange={handleChange}
-              onFocus={(e) => (e.target.type = "date")}
-              onBlur={(e) => formData.date === "" && (e.target.type = "text")}
+            <DatePicker
+              selected={formData.date}
+              onChange={handleDateChange}
+              placeholderText="Booking date*"
               className={styles.input}
-              placeholder="Booking date*"
+              dateFormat="dd/MM/yyyy"
               required
+              minDate={new Date()} // geçmiş tarih seçilemesin
             />
           </label>
 

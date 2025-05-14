@@ -11,24 +11,37 @@
 }
 
 .loadMoreBtn{
-        background-color: #E44848;
-    color: #F2F4F7;
+        background-color: #FFFFFF;
+    color: #101828;
     border-radius: 200px;
     padding: 16px;
-    display: flex
-;
+    display: flex;
+    border: 1px solid #DADDE1;
     justify-content: center;
     text-decoration: none;
     margin: 24px;
     width: 170px;
     cursor: pointer;
-    border: none;
 }
+.loadMoreBtn:hover{
+        border: 1px solid #D84343;
 
+}
 /* CatalogPage.module.css */
 .filterContainer {
   position: sticky;
   top: 20px; /* sayfanın üstünden ne kadar aşağıda sabitleneceğini belirtir */
   align-self: flex-start; /* eğer grid veya flex içindeyse yukarı hizalar */
   z-index: 10; /* gerektiğinde üste çıkması için */
+}
+
+.loadingContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    top: 50%;
+    left: 70%;
+    position: absolute;
+    transform: translate(-50%, -50%);
 }

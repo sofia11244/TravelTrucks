@@ -151,7 +151,9 @@ mix-blend-mode: Multiply;
     cursor: pointer;
     border: none;
 }
-
+.showMoreBtn:hover{
+    background-color: #D84343;
+}
 .typeOptionButton{
   display: flex;
   align-items: center;

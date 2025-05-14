@@ -46,7 +46,8 @@ text-align: right;
     margin-bottom: 24px;
 }
 .input,
-.inputComment{
+.inputComment,
+.inputDate{
     width: 527px;
 height: 60px;
 border-radius: 12px;
@@ -85,4 +86,18 @@ background: #E44848;
 outline: none;
 border: none;
 color:#FFFFFF ;
+    cursor: pointer;
+
+}
+
+.button:hover{
+    background: #D84343;
+}
+
+.inputComment {
+  resize: none;
+}
+
+.inputDate{
+    cursor: pointer;
 }
