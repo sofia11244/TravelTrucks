@@ -1,6 +1,6 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './Header.module.css'; 
-import logo from '../assets/camper-logo.png'; // Adjust the path as necessary
+import logo from '../assets/TravelTrucks.svg'; // Adjust the path as necessary
 
 export default function Header() {
   const navigate = useNavigate();
