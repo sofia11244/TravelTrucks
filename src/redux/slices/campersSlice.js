@@ -41,6 +41,8 @@ const initialState = {
   loading: false,
   error: null,
   page: 1,
+  searchEmpty: false,
+
 }
 
 const campersSlice = createSlice({
@@ -67,6 +69,7 @@ const campersSlice = createSlice({
         state.loading = false
         state.items = action.payload.items
         state.total = action.payload.total
+        state.searchEmpty = action.payload.items.length === 0;
       })
       .addCase(fetchCampers.rejected, (state, action) => {
         state.loading = false
@@ -84,6 +87,8 @@ const campersSlice = createSlice({
         state.loading = false
         state.error = action.payload
       })
+      
+
   },
 })
 

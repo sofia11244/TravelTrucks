@@ -21,8 +21,8 @@ function FilterForm() {
   const searchApplied = useSelector(state => state.filters.searchApplied);
 
   const vehicleTypes = [
-    { value: "van", label: "Van", icon: three },
-    { value: "integrated", label: "Fully Integrated", icon: four },
+    { value: "panelTruck", label: "Van", icon: three },
+    { value: "fullyIntegrated", label: "Fully Integrated", icon: four },
     { value: "alcove", label: "Alcove", icon: nine },
   ];
 

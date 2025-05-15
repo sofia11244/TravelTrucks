@@ -30,10 +30,10 @@ const handleToggleFavorite = (e) => {
   dispatch(toggleFavorite(camper.id));
 }
 
-const formatLocation = (location) => {
-  const [country, city] = location.split(',').map(s => s.trim());
-  return `${city}, ${country}`;
-};
+// const formatLocation = (location) => {
+//   const [country, city] = location.split(',').map(s => s.trim());
+//   return `${city}, ${country}`;
+// };
 
 
   const formatPrice = (price) => {
@@ -86,7 +86,10 @@ const formatLocation = (location) => {
              <div>
                <span className={styles.camperLocation}>
   <img src={map} alt="Location" className={styles.locationIcon} />
-  {formatLocation(camper.location)}
+  {(camper.location)}
+  {/* {formatLocation(camper.location)} */}
+
+  
 </span>
 
              </div>

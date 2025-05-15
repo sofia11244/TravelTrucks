@@ -197,4 +197,11 @@ padding-bottom: 18px;
 padding-left: 18px;
 background-color: #F7F7F7;
 
+} 
+/* FiltersForm.module.css */
+
+.errorText {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: 4px;
 }

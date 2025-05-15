@@ -6,9 +6,12 @@ import FilterForm from "../components/filters/FiltersForm"
 import { ClipLoader } from "react-spinners" // Importing the spinner
 import styles from '../styles/CatalogPage.module.css'; // Import your CSS module
 
+
 function CatalogPage() {
   const dispatch = useDispatch()
   const { items, total, loading, page } = useSelector((state) => state.campers)
+const searchEmpty = useSelector(state => state.campers.searchEmpty);
+
 
   useEffect(() => {
     dispatch(fetchCampers())
@@ -24,7 +27,6 @@ function CatalogPage() {
 
   return (
     <div className={styles.catalogPage}>
-      {/* main div */}
         
         <div className={styles.filterContainer}> {/* just filten div */}
           <FilterForm />
@@ -35,11 +37,11 @@ function CatalogPage() {
             <div className={styles.loadingContainer}>
               <ClipLoader className={styles.loadingIcon} color="#000000" size={50} />
             </div>
-          ) : items.length === 0 ? (
-            <div className={styles.noResults}>
-              <p>Couldn't find any results</p>
-            </div>
-          ) : (
+            ) : searchEmpty ? (
+              <div className={styles.noResults}>
+                <p>Couldn't find any results</p>
+              </div>
+            ) : (
             <>
               <div className={styles.campersGrid}>
                 {displayedItems.map((camper) => (
