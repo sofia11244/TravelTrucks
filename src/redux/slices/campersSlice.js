@@ -72,9 +72,12 @@ const campersSlice = createSlice({
         state.searchEmpty = action.payload.items.length === 0;
       })
       .addCase(fetchCampers.rejected, (state, action) => {
-        state.loading = false
-        state.error = action.payload
-      })
+  state.loading = false
+  state.error = action.payload
+  state.searchEmpty = true
+  state.items = []
+})
+
       .addCase(fetchCamperById.pending, (state) => {
         state.loading = true
         state.error = null
