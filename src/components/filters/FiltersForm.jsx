@@ -1,8 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react"; 
+import { useEffect, useState } from "react"; 
 import { setLocation, setType, toggleFeature, setSearchApplied } from "../../redux/slices/filtersSlice";
 import { fetchCampers } from "../../redux/slices/campersSlice";
 import styles from '../filters/FiltersForm.module.css';
+
+import { fetchAllCities } from "../../redux/slices/campersSlice";
 
 import tv from '../../assets/tv.svg';
 import ac from '../../assets/wind.svg';
@@ -18,7 +20,19 @@ import nine from '../../assets/bi_grid-3x3-gap.svg'; // gas icon used for Alcove
 function FilterForm() {
   const dispatch = useDispatch();
   const filters = useSelector((state) => state.filters);
+  const allCities = useSelector(state => state.campers.cities);
   const searchApplied = useSelector(state => state.filters.searchApplied);
+  
+  const [filteredCities, setFilteredCities] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+useEffect(() => {
+  dispatch(fetchAllCities());
+}, [dispatch]);
+
+useEffect(() => {
+  console.log("All cities from Redux:", allCities);
+}, [allCities]);
+
 
   const vehicleTypes = [
     { value: "panelTruck", label: "Van", icon: three },
@@ -34,17 +48,41 @@ function FilterForm() {
     { value: "automatic", label: "Automatic", icon: automatic },
   ];
 
-  const handleLocationChange = (e) => {
-    dispatch(setLocation(e.target.value));
+const handleLocationChange = (e) => {
+  const value = e.target.value;
+  console.log("Input value:", value);
+  dispatch(setLocation(value));
+
+  if (value.length > 1) {
+    const suggestions = allCities.filter(city =>
+      city.toLowerCase().includes(value.toLowerCase())
+    );
+    console.log("Filtered suggestions:", suggestions);
+    setFilteredCities(suggestions);
+    setShowSuggestions(true);
+  } else {
+    setShowSuggestions(false);
+  }
+};
+
+  
+
+  // const handleTypeChange = (e) => {
+  //   dispatch(setType(e.target.value));
+  // };
+
+  const handleCitySelect = (city) => {
+    dispatch(setLocation(city));
+    setShowSuggestions(false);
   };
 
-  const handleTypeChange = (e) => {
-    dispatch(setType(e.target.value));
-  };
 
   const handleFeatureToggle = (feature) => {
     dispatch(toggleFeature(feature));
   };
+const handleTypeToggle = (type) => {
+  dispatch(setType(filters.type === type ? "" : type)); // Aynı tipe tıklanırsa kaldır
+};
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -62,6 +100,10 @@ function FilterForm() {
   }, [searchApplied, dispatch]);
 
 
+// const handleCitySelect = (city) => {
+//   dispatch(setLocation(city));
+//   setShowSuggestions(false);
+// };
 
   return (
     <div className={styles.filterContainer}>
@@ -75,9 +117,25 @@ function FilterForm() {
               value={filters.location}
               onChange={handleLocationChange}
               className={`${styles.locationInput} ${searchApplied && filters.location ? styles.activeInput : ''}`}
+              onFocus={() => setShowSuggestions(true)}
+              // onBlur={() => setTimeout(() => setShowSuggestions(false), 200)} 
             />
+            {showSuggestions && filteredCities.length > 0 && (
+              <ul className={styles.suggestionsList}>
+                {filteredCities.map((city, index) => (
+                  <li
+                    key={index}
+                    className={styles.suggestionItem}
+                    onClick={() => handleCitySelect(city)}
+                  >
+                    {city}
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         </div>
+
         <p className={styles.filtersTitle}>Filters</p>
         <div className={styles.filterSection}>
           <h3 className={styles.filtersTitleVehicle}>Vehicle Equipments</h3>
@@ -104,23 +162,18 @@ function FilterForm() {
         <div className={styles.filterSection}>
           <h3 className={styles.filtersTitleVehicle}>Vehicle Type</h3>
           <div className={styles.typeOptions}>
-            {vehicleTypes.map((type) => (
-              <label
-                key={type.value}
-                className={`${styles.typeOptionButton} ${filters.type === type.value ? styles.active : ''}`}
-              >
-                <input
-                  type="radio"
-                  name="vehicleType"
-                  value={type.value}
-                  checked={filters.type === type.value}
-                  onChange={handleTypeChange}
-                />
-                <img src={type.icon} alt={`${type.label} icon`} className={styles.typeIcon} />
-                <span>{type.label}</span>
-              </label>
-            ))}
-          </div>
+  {vehicleTypes.map((type) => (
+    <div
+      key={type.value}
+      onClick={() => handleTypeToggle(type.value)}
+      className={`${styles.typeOptionButton} ${filters.type === type.value ? styles.active : ''}`}
+    >
+      <img src={type.icon} alt={`${type.label} icon`} className={styles.typeIcon} />
+      <span>{type.label}</span>
+    </div>
+  ))}
+</div>
+
         </div>
 
         <div className={styles.filterActions}>

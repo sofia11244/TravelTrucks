@@ -42,12 +42,13 @@ const handleToggleFavorite = (e) => {
 
   // Dinamik özelliklerin listelenmesi
   const featureIcons = {
+    'TV': tv, 
+
     'automaticTransmission': automaticTransmission,
 
     'AC': ac, 
     'bathroom': bathroom, 
     'kitchen': kitchen, 
-    'TV': tv, 
     'radio': radio, 
     'refrigerator': refrigerator, 
     'microwave': microwave, 
@@ -102,23 +103,26 @@ const handleToggleFavorite = (e) => {
 
           
           <div className={styles.camperFeatures}>
-            {Object.keys(featureIcons).map((feature) => {
-              if (feature === 'automaticTransmission' && camper.transmission === 'automatic') {
-                return (
-                  <span key={feature} className={styles.feature}>
-                    <img src={featureIcons[feature]} alt="Automatic Transmission" className={styles.featureIcon} />
-                    Automatic
-                  </span>
-                );
-              }
-              return camper[feature] ? (
-                <span key={feature} className={styles.feature}>
-                  <img src={featureIcons[feature]} alt={feature} className={styles.featureIcon} />
-                  {feature}
-                </span>
-              ) : null;
-            })}
-          </div>
+  {Object.entries(featureIcons).map(([feature, icon]) => {
+    if (feature === 'automaticTransmission') {
+      return camper.transmission === 'automatic' ? (
+        <span key={feature} className={styles.feature}>
+          <img src={icon} alt="Automatic Transmission" className={styles.featureIcon} />
+          Automatic
+        </span>
+      ) : null;
+    }
+
+    // Diğer özellikler için kontrol
+    return camper[feature] ? (
+      <span key={feature} className={styles.feature}>
+        <img src={icon} alt={feature} className={styles.featureIcon} />
+        {feature}
+      </span>
+    ) : null;
+  })}
+</div>
+
 
           <div className={styles.camperCardFooter}>
             

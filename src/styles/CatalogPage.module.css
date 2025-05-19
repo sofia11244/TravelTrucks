@@ -38,16 +38,6 @@
   flex: 1;
 }
 
-.loadingContainer{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    top: 50%;
-    left: 70%;
-    position: absolute;
-    transform: translate(-50%, -50%);
-}
 
 .noResults {
   text-align: center;

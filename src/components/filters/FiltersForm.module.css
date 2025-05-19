@@ -1,6 +1,9 @@
 .filterContainer{
   margin-left:64px ;
-  margin-top: 48px
+  margin-top: 48px;
+      justify-content: flex-start;
+  display: flex;
+  width: 480px
 }
 
 .typeOptions {
@@ -43,7 +46,7 @@ padding-bottom: 24px;
   align-items: center;
   justify-content: center;
   padding: 12px;
-  border: 1px solid grey;
+  border: 1px solid #DADDE1;
   border-radius: 30px;
   cursor: pointer;
   transition: 0.3s;
@@ -66,7 +69,7 @@ padding-bottom: 24px;
   display: flex;
   align-items: center;
   flex-direction: column;
-  border: 1px solid grey;
+  border: 1px solid #DADDE1;
   border-radius: 30px;
   cursor: pointer;
   transition: 0.3s;
@@ -120,8 +123,7 @@ padding-bottom: 24px;
 
 /* -------------------- */
 .featureOptionContent{
-  width: 112;
-height: 96;
+
 padding-top: 16px;
 padding-right: 27px;
 padding-bottom: 16px;
@@ -187,8 +189,8 @@ background-image: url('../../assets/map.svg');
 }
 
 .input{
-  width: 360;
-height: 56;
+  width: 480px;
+height: 56px;
 gap: 10px;
 border-radius: 12px;
 padding-top: 18px;
@@ -198,10 +200,34 @@ padding-left: 18px;
 background-color: #F7F7F7;
 
 } 
-/* FiltersForm.module.css */
 
 .errorText {
   color: red;
   font-size: 0.85rem;
   margin-top: 4px;
+}
+
+
+
+/* ------------------ */
+.suggestionsList {
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ddd;
+  max-height: 150px;
+  overflow-y: auto;
+  z-index: 10;
+  width: 100%;
+  margin-top: 4px;
+  border-radius: 4px;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+}
+
+.suggestionItem {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.suggestionItem:hover {
+  background-color: #f0f0f0;
 }

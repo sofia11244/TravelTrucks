@@ -5,7 +5,7 @@ import styles from '../styles/Catalog.module.css'
 
 function Catalog() {
   const { items, loading, page } = useSelector(state => state.campers)
-console.log('items:', items)
+// console.log('items:', items)
 
   const displayedItems = items.slice(1, page * 6)
 

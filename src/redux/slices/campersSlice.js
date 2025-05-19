@@ -33,6 +33,33 @@ export const fetchCamperById = createAsyncThunk("campers/fetchCamperById", async
     return rejectWithValue(error.message)
   }
 })
+export const fetchAllCities = createAsyncThunk(
+  "campers/fetchAllCities",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(API_URL)
+
+      // Doğru: .items üzerinden veri çekiyoruz
+      const locations = response.data.items
+        .map(item => item.location)
+        .filter(loc => typeof loc === "string" && loc.trim() !== "")
+        .map(loc => {
+          const parts = loc.split(",").map(p => p.trim().toLowerCase())
+          return parts[1] || parts[0]
+        })
+
+      const cities = [...new Set(locations)]
+      console.log("✅ Unique cities:", cities)
+      return cities
+    } catch (error) {
+      console.error("❌ fetchAllCities error:", error)
+      return rejectWithValue(error.message)
+    }
+  }
+)
+
+
+
 
 const initialState = {
   items: [],
@@ -42,8 +69,9 @@ const initialState = {
   error: null,
   page: 1,
   searchEmpty: false,
-
+  cities: [], // new state
 }
+
 
 const campersSlice = createSlice({
   name: "campers",
@@ -90,7 +118,13 @@ const campersSlice = createSlice({
         state.loading = false
         state.error = action.payload
       })
-      
+      .addCase(fetchAllCities.fulfilled, (state, action) => {
+  state.cities = action.payload
+})
+.addCase(fetchAllCities.rejected, (state, action) => {
+  state.error = action.payload
+})
+
 
   },
 })
