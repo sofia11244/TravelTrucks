@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
 const initialState = {
-  location: "",
+  location: { country: "", city: "" }, //changed bcuz its not a string anymore
   type: "",
   searchApplied: false,
   features: {
@@ -8,13 +8,14 @@ const initialState = {
     bathroom: false,
     kitchen: false,
     TV: false,
-    automatic: false, 
     radio: false,
     refrigerator: false,
     microwave: false,
     gas: false,
     water: false,
     transmission: false,
+    automatic: false, // ?
+
   },
 }
 
@@ -24,7 +25,12 @@ const filtersSlice = createSlice({
   initialState,
   reducers: {
     setLocation: (state, action) => {
-      state.location = action.payload
+      // state.location = action.payload
+      // const { country, city } = action.payload; değil de
+
+      const {  country = "", city = "" } = action.payload; // Böylece undefined veya string karmaşası yaşamazsın.
+      
+    state.location = { country, city };//obje haline getirmek için(?)
     },
     setType: (state, action) => {
       state.type = action.payload

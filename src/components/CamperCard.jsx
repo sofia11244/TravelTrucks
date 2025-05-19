@@ -30,10 +30,16 @@ const handleToggleFavorite = (e) => {
   dispatch(toggleFavorite(camper.id));
 }
 
-// const formatLocation = (location) => {
-//   const [country, city] = location.split(',').map(s => s.trim());
-//   return `${city}, ${country}`;
-// };
+const getFormattedLocation = (location) => {
+  if (typeof location === "string" && location.includes(",")) {
+    const [country, city] = location.split(",").map(str => str.trim());
+    return { country, city };
+  }
+  return { country: "", city: "" };
+};
+
+const { country, city } = getFormattedLocation(camper.location);
+
 
 
   const formatPrice = (price) => {
@@ -85,19 +91,15 @@ const handleToggleFavorite = (e) => {
               <span>{camper.rating} ({camper.reviews?.length || 0} Reviews)</span>
               </div>
              <div>
-               <span className={styles.camperLocation}>
-  <img src={map} alt="Location" className={styles.locationIcon} />
-  {(camper.location)}
-  {/* {formatLocation(camper.location)} */}
-
-  
-</span>
-
+                <span className={styles.camperLocation}>
+                  <img src={map} alt="Location" className={styles.locationIcon} />
+                  {/* {(camper.location)} */}
+                  {city}, {country}
+                  {/* {formatLocation(camper.location)} */}
+                </span>
              </div>
             </div>
-               <p className={styles.camperDescription}>{camper.description}</p>
-
-
+            <p className={styles.camperDescription}>{camper.description}</p>
           </div>
 
 

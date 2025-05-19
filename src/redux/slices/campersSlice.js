@@ -4,21 +4,23 @@ import axios from "axios"
 const API_URL = "https://66b1f8e71ca8ad33d4f5f63e.mockapi.io/campers"
 
 export const fetchCampers = createAsyncThunk("campers/fetchCampers", async (_, { getState, rejectWithValue }) => {
+  
   try {
     const { filters } = getState()
     const queryParams = new URLSearchParams()
 
-    if (filters.location) {
-      queryParams.append("location", filters.location)
-    }
-
+if (filters.location.city && filters.location.country) {
+  queryParams.append("location", `${filters.location.country}, ${filters.location.city}`);
+}
     if (filters.type) {
       queryParams.append("form", filters.type)
     }
     if (filters.features["automatic"]) {
       queryParams.append("transmission", "automatic")
     }
+    console.log("Request URL:", `${API_URL}?${queryParams.toString()}`);
     const response = await axios.get(`${API_URL}?${queryParams.toString()}`)
+    console.log("API response:", response.data)
     return response.data
   } catch (error) {
     return rejectWithValue(error.message)
@@ -29,34 +31,42 @@ export const fetchCamperById = createAsyncThunk("campers/fetchCamperById", async
   try {
     const response = await axios.get(`${API_URL}/${id}`)
     return response.data
+    
   } catch (error) {
     return rejectWithValue(error.message)
   }
 })
+
+
+
 export const fetchAllCities = createAsyncThunk(
   "campers/fetchAllCities",
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get(API_URL)
 
-      // Doğru: .items üzerinden veri çekiyoruz
       const locations = response.data.items
         .map(item => item.location)
-        .filter(loc => typeof loc === "string" && loc.trim() !== "")
+        .filter(loc => typeof loc === "string" && loc.includes(","))
         .map(loc => {
-          const parts = loc.split(",").map(p => p.trim().toLowerCase())
-          return parts[1] || parts[0]
+          const [country, city] = loc.split(",").map(p => p.trim())
+          return { country, city }
         })
 
-      const cities = [...new Set(locations)]
-      console.log("✅ Unique cities:", cities)
-      return cities
+      // Duplicate'leri önlemek için Set kullanıyoruz
+      const uniqueLocations = Array.from(
+        new Map(locations.map(obj => [`${obj.country}-${obj.city}`, obj])).values()
+      )
+
+      // console.log("✅ Country-city list:", uniqueLocations)
+      return uniqueLocations
     } catch (error) {
       console.error("❌ fetchAllCities error:", error)
       return rejectWithValue(error.message)
     }
   }
 )
+
 
 
 
@@ -69,7 +79,7 @@ const initialState = {
   error: null,
   page: 1,
   searchEmpty: false,
-  cities: [], // new state
+  location: { country: "", city: "" }, // new state
 }
 
 

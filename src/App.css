@@ -13,7 +13,7 @@
   --color-FFFFFF: #FFFFFF;
 }
 * {
-  transition: all 0.3s ease;
+  /* transition: all 0.3s ease; */
   box-sizing: border-box;
   /* margin: 0;
   padding: 0; */

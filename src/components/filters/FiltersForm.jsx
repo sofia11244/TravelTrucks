@@ -20,19 +20,60 @@ import nine from '../../assets/bi_grid-3x3-gap.svg'; // gas icon used for Alcove
 function FilterForm() {
   const dispatch = useDispatch();
   const filters = useSelector((state) => state.filters);
-  const allCities = useSelector(state => state.campers.cities);
-  const searchApplied = useSelector(state => state.filters.searchApplied);
-  
+  const allCities = useSelector((state) => state.campers.cities);
+  const searchApplied = useSelector((state) => state.filters.searchApplied);
+
+  const [inputValue, setInputValue] = useState("");
   const [filteredCities, setFilteredCities] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
-useEffect(() => {
-  dispatch(fetchAllCities());
-}, [dispatch]);
 
-useEffect(() => {
-  console.log("All cities from Redux:", allCities);
-}, [allCities]);
+  useEffect(() => {
+    dispatch(fetchAllCities());
+  }, [dispatch]);
 
+const handleLocationChange = (e) => {
+  const input = e.target.value;
+  setInputValue(input);
+
+  const filtered = allCities.filter((loc) => {
+    const fullName = `${loc.country}, ${loc.city}`.toLowerCase();
+    const doesMatch = fullName.includes(input.toLowerCase());
+    // console.log(`Check ${fullName} includes ${input.toLowerCase()}?`, doesMatch);
+    // if the filtering is workin
+    return doesMatch;
+  });
+
+  setFilteredCities(filtered);
+  setShowSuggestions(true);
+};
+
+
+  const handleCitySelect = (loc) => {
+    const fullText = `${loc.country}, ${loc.city}`;
+    setInputValue(fullText);
+    dispatch(setLocation({ country: loc.country, city: loc.city }));
+    setShowSuggestions(false);
+  };
+
+  const handleFeatureToggle = (feature) => {
+    dispatch(toggleFeature(feature));
+  };
+
+  const handleTypeToggle = (type) => {
+    dispatch(setType(filters.type === type ? "" : type));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(setSearchApplied(true));
+  };
+
+  useEffect(() => {
+    if (searchApplied) {
+      dispatch(fetchCampers());
+      dispatch(setSearchApplied(false));
+    }
+  }, [searchApplied, dispatch]);
 
   const vehicleTypes = [
     { value: "panelTruck", label: "Van", icon: three },
@@ -48,91 +89,43 @@ useEffect(() => {
     { value: "automatic", label: "Automatic", icon: automatic },
   ];
 
-const handleLocationChange = (e) => {
-  const value = e.target.value;
-  console.log("Input value:", value);
-  dispatch(setLocation(value));
-
-  if (value.length > 1) {
-    const suggestions = allCities.filter(city =>
-      city.toLowerCase().includes(value.toLowerCase())
-    );
-    console.log("Filtered suggestions:", suggestions);
-    setFilteredCities(suggestions);
-    setShowSuggestions(true);
-  } else {
-    setShowSuggestions(false);
-  }
-};
-
-  
-
-  // const handleTypeChange = (e) => {
-  //   dispatch(setType(e.target.value));
-  // };
-
-  const handleCitySelect = (city) => {
-    dispatch(setLocation(city));
-    setShowSuggestions(false);
-  };
-
-
-  const handleFeatureToggle = (feature) => {
-    dispatch(toggleFeature(feature));
-  };
-const handleTypeToggle = (type) => {
-  dispatch(setType(filters.type === type ? "" : type)); // Aynı tipe tıklanırsa kaldır
-};
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Filtreler gönderiliyor ve searchApplied true olarak ayarlanıyor.
-    dispatch(setSearchApplied(true));  // Bu tetikleyerek arama işlemi yapılacak
-    // console.log("Reservation submitted", camperId, formData);
-  };
-
-  useEffect(() => {
-    if (searchApplied) {
-      // Sadece searchApplied true olduğunda veri çekilecek
-      dispatch(fetchCampers());
-      dispatch(setSearchApplied(false));  // Bir kere çalıştıktan sonra tekrar çalışmasın
-    }
-  }, [searchApplied, dispatch]);
-
-
-// const handleCitySelect = (city) => {
-//   dispatch(setLocation(city));
-//   setShowSuggestions(false);
-// };
+//   useEffect(() => {
+//   console.log("allCities:", allCities);
+// }, [allCities]);
+//  to control if i fecth or data comes
+// console.log("filteredCities:", JSON.stringify(filteredCities, null, 2));
 
   return (
     <div className={styles.filterContainer}>
       <form className={styles.filterForm} onSubmit={handleSubmit}>
+        {/* Location Filter */}
         <div className={styles.filterSection}>
           <h3 className={styles.filtersTitleLocation}>Location</h3>
           <div className={styles.input}>
             <input
               type="text"
               placeholder="City"
-              value={filters.location}
+              value={inputValue}
               onChange={handleLocationChange}
-              className={`${styles.locationInput} ${searchApplied && filters.location ? styles.activeInput : ''}`}
+              className={`${styles.locationInput} ${
+                searchApplied && filters.location ? styles.activeInput : ""
+              }`}
               onFocus={() => setShowSuggestions(true)}
-              // onBlur={() => setTimeout(() => setShowSuggestions(false), 200)} 
             />
             {showSuggestions && filteredCities.length > 0 && (
               <ul className={styles.suggestionsList}>
-                {filteredCities.map((city, index) => (
+                {filteredCities.map((loc, index) => (
                   <li
                     key={index}
                     className={styles.suggestionItem}
-                    onClick={() => handleCitySelect(city)}
+                    onClick={() => handleCitySelect(loc)}
                   >
-                    {city}
+                    {loc.country}, {loc.city}
                   </li>
                 ))}
               </ul>
             )}
+            {/* <pre>{JSON.stringify(filteredCities, null, 2)}</pre> */}
           </div>
         </div>
 
