@@ -7,7 +7,7 @@ export const selectFilteredCampers = (state) => {
       console.error('campersList is not an array:', campersList);
       return [];
     }
-    console.log('campersList in selector:', state?.campers?.campersList);
+    // console.log('campersList in selector:', state?.campers?.campersList);
 
     
     return campersList.filter((camper) => {

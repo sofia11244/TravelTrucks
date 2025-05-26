@@ -2,6 +2,11 @@
     display: flex;
     gap: 64px;
     justify-content: center;
+    flex-direction: column;
+}
+.catalog{
+  display: flex;
+  gap: 100px;
 }
 
 .campersContainer{
@@ -10,6 +15,10 @@
     gap: 20px;
     padding: 20px;
     flex:2;
+}
+.loadMoreContainer{
+  display: flex;
+  justify-content: center;
 }
 
 .loadMoreBtn{
@@ -24,6 +33,7 @@
     margin: 24px;
     width: 170px;
     cursor: pointer;
+
 }
 .loadMoreBtn:hover{
         border: 1px solid #D84343;
@@ -36,6 +46,7 @@
   align-self: flex-start; /* eğer grid veya flex içindeyse yukarı hizalar */
   z-index: 10; /* gerektiğinde üste çıkması için */
   flex: 1;
+  height: 600px;
 }
 
 
@@ -46,3 +57,4 @@
   margin-top: 2rem;
   flex: 2;
 }
+

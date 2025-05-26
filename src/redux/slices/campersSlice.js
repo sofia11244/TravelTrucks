@@ -18,9 +18,9 @@ if (filters.location.city && filters.location.country) {
     if (filters.features["automatic"]) {
       queryParams.append("transmission", "automatic")
     }
-    console.log("Request URL:", `${API_URL}?${queryParams.toString()}`);
+    // console.log("Request URL:", `${API_URL}?${queryParams.toString()}`);
     const response = await axios.get(`${API_URL}?${queryParams.toString()}`)
-    console.log("API response:", response.data)
+    // console.log("API response:", response.data)
     return response.data
   } catch (error) {
     return rejectWithValue(error.message)
