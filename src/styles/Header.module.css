@@ -1,22 +1,22 @@
+
+
 .headerContainer{
     display: flex;
-  justify-content: space-between; /* Sağda başka bir şey varsa, gerekebilir */
   align-items: center;
-  position: relative;
+  flex-direction: column;
+
   background-color: #F7F7F7;
+
+    position: sticky;
+  top: 0;
+  align-self: flex-start; 
+  z-index: 100; 
 }
 .headerText{
-  padding:  28px 64px;
-    margin-right: auto;
-    display: flex;
-    align-items: center;
+  padding: 20px 18px 10px;
 }
 
 .buttonContainer{
-      position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
   gap: 32px;
 }
 .button{
@@ -37,10 +37,38 @@ text-align: center;
   color: #D84343;
 }
 
+
+
+
+@media (min-width: 768px) {
+
+.headerContainer{
+  flex-direction: row;
+}
+.headerText{
+  padding:  28px 64px;
+    margin-right: auto;
+}
+
+.buttonContainer{
+      position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 32px;
+}
+
 .headerContainer{
   /* CatalogPage.module.css */
   position: sticky;
   top: 0; /* sayfanın üstünden ne kadar aşağıda sabitleneceğini belirtir */
   align-self: flex-start; /* eğer grid veya flex içindeyse yukarı hizalar */
   z-index: 100; /* gerektiğinde üste çıkması için */
+}
+
+
+}
+
+@media (max-width: 1024px) {
+
 }
