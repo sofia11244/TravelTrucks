@@ -1,4 +1,4 @@
-import styles from './ReviewSection.module.css';
+import styles from '../styles/ReviewSection.module.css';
 import ReservationForm from "./ReservationForm";
 
 function ReviewSection({ reviews }) {

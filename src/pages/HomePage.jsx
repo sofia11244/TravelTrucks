@@ -1,4 +1,4 @@
-import style from './HomePage.module.css';
+import style from '../styles/HomePage.module.css';
 import { useNavigate } from 'react-router-dom';
 import picture from '../assets/camper-home.jpg';
 

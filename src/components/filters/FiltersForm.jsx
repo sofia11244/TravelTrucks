@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react"; 
 import { setLocation, setType, toggleFeature, setSearchApplied } from "../../redux/slices/filtersSlice";
 import { fetchCampers } from "../../redux/slices/campersSlice";
-import styles from '../filters/FiltersForm.module.css';
+import styles from '../../styles/FiltersForm.module.css';
 
 import { fetchAllCities } from "../../redux/slices/campersSlice";
 

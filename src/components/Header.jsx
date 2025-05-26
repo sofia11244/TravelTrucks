@@ -1,5 +1,5 @@
 import { useNavigate, useLocation } from 'react-router-dom';
-import styles from './Header.module.css'; 
+import styles from '../styles/Header.module.css'; // Adjust the path as necessary
 import logo from '../assets/TravelTrucks.svg'; // Adjust the path as necessary
 
 export default function Header() {

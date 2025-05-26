@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import styles from "./ReservationForm.module.css";
+import styles from "../styles/ReservationForm.module.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 

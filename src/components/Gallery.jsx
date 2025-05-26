@@ -1,4 +1,4 @@
-import styles from "./Gallery.module.css"
+import styles from "../styles/Gallery.module.css"
 
 function Gallery({ images }) {
   if (!images || images.length === 0) {
